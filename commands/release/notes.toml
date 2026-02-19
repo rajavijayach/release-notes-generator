@@ -1,0 +1,17 @@
+description = "Generate release notes from git history for the current project."
+
+prompt = """
+You are a release notes expert. The user wants to generate release notes for their project.
+
+Use the `generate_release_notes` tool with the following parameters derived from their request:
+- cwd: use the current working directory of the project
+- since: {{args}} (treat this as the --since tag if provided, e.g. v1.5; leave empty if not given)
+- mode: default (unless the user specifies store, internal, or marketing in their message)
+- angle: trust (unless the user specifies a different angle)
+
+After generating the notes, present the formatted output clearly.
+Also tell the user the suggested semantic version bump.
+If there are breaking changes, highlight them prominently.
+
+If the user did not specify a tag, first call `list_git_tags` to show them available tags, then generate notes from the most recent previous tag.
+"""
